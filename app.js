@@ -23,12 +23,12 @@ function askUser() {
         {
             type: "input",
             message: "What the employee's name?",
-            name: "username"
+            name: "name"
         },
         {
             type: "input",
             message: "What the employee's Employee ID?",
-            name: "employeeid"
+            name: "id"
         },
         {
             type: "input",
@@ -44,7 +44,7 @@ function askUser() {
         {
             type: "input",
             message: "What is the manager's office number?",
-            name: "officenumber",
+            name: "officeNumber",
             when: function(response) {
                 return response.role === "Manager";
             }
@@ -52,7 +52,7 @@ function askUser() {
         {
             type: "input",
             message: "What is the engineers's Github username?",
-            name: "githubname",
+            name: "github",
             when: function(response) {
                 return response.role === "Engineer";
             }
@@ -60,7 +60,7 @@ function askUser() {
         {
             type: "input",
             message: "What is the intern's school?",
-            name: "internschool",
+            name: "school",
             when: function(response) {
                 return response.role === "Intern";
             }
@@ -76,17 +76,17 @@ function askUser() {
         console.table(response);
         switch (response.role) {
             case 'Manager':
-                console.log(response);
+                
                 const manager = new Manager (response.name, response.id, response.email, response.officeNumber);
                 employeeArr.push(manager);
                 break;
             case 'Engineer':
-                console.log(response);
+                
                 const engineer = new Engineer (response.name, response.id, response.email, response.github );
                 employeeArr.push(engineer);
                 break;
             case 'Intern':
-                console.log(response);
+                
                 const intern = new Intern (response.name, response.id, response.email, response.school);
                 employeeArr.push(intern);
                 break;
@@ -94,7 +94,7 @@ function askUser() {
                 console.log(`Sorry something went wrong`);
         }
         
-       if (askUser() === true ) {
+       if (response.anotheremployee === true ) {
            askUser();
        } else {
            console.log(employeeArr);
