@@ -98,6 +98,7 @@ function askUser() {
            askUser();
        } else {
            console.log(employeeArr);
+           render(employeeArr);
        }
     });
 }
