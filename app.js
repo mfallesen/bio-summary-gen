@@ -9,7 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const Choices = require("inquirer/lib/objects/choices");
+// const Choices = require("inquirer/lib/objects/choices");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -98,8 +98,15 @@ function askUser() {
            askUser();
        } else {
            console.log(employeeArr);
-           render(employeeArr);
+           const html = render(employeeArr);
+           fs.writeFile(outputPath, html, (err) => {
+               if (err) throw err;
+               console.log("Finished!");
+           })
+           console.log(html);
        }
+
+
     });
 }
 
